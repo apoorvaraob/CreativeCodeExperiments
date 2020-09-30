@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  script.
+    if(window.navigator.geolocation){
+        console.log("Geolocation available!")
+    }
+    else{
+        console.warn("Geolocation not available!")
+    }
+
