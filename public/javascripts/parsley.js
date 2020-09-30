@@ -1,23 +1,20 @@
 // The Nature of Code
 // Daniel Shiffman
-// Modified by Apoorva B
+// Modified by Apoorva B - varied the value of the rotation angle of the branches slightly making it tilt to one side 
+// and adjusted the length of the branches on one side so that they aren't perfectly symmetrical.
+
 // http://natureofcode.com
 
 // Recursive Tree
 // Renders a simple tree-like structure via recursion
 
-
 let parsley_sketch = function(p) {
 let theta;
-//let theShader;
 
 p.preload = function(){
-  // load the shader
-  // theShader = p.loadShader('../assets/onecolor.vert', '../assets/onecolor.frag');
 }
 
 p.setup = function(){
-  //p.createCanvas(800, 500, p.WEBGL);
   //p.createCanvas(p.displayWidth, p.displayHeight);
   p.createCanvas(800,500)
   p.frameRate(4);

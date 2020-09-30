@@ -7,28 +7,43 @@ let perlin_sketch = function(perlin) {
     //perlin.createCanvas(perlin.displayWidth, perlin.displayHeight);
     perlin.stroke(0, 18);
     perlin.background('#87ceeb');
+    perlin.frameRate(30);
     t = 0;
   }
 
+  perlin.getPointX = function(t) {
+    let  coordinate = perlin.width * perlin.noise(t + perlin.random(10));
+    return coordinate;
+  }
+
+  perlin.getPointY = function(t) {
+    let  coordinate = perlin.height * perlin.noise(t + perlin.random(10));
+    return coordinate;
+  }
+
   perlin.draw = function(){
-    var x1 = perlin.width * perlin.noise(t + 15);
-    var x2 = perlin.width * perlin.noise(t + 25);
-    var x3 = perlin.width * perlin.noise(t + 35);
-    var x4 = perlin.width * perlin.noise(t + 45);
-    var y1 = perlin.height * perlin.noise(t + 55);
-    var y2 = perlin.height * perlin.noise(t + 65);
-    var y3 = perlin.height * perlin.noise(t + 75);
-    var y4 = perlin.height * perlin.noise(t + 85);
 
-    perlin.bezier(x1, y1, x2, y2, x3, y3, x4, y4);
+    perlin.noStroke();
+    cloudColor = perlin.color(255);
+    cloudColor.setAlpha(128);
+    perlin.fill(cloudColor);
+    perlin.beginShape();
+    perlin.vertex(perlin.getPointX(t), perlin.getPointY(t), 100);
+    for(let i=0; i<5; i++) {
+      perlin.bezierVertex(perlin.getPointX(t), perlin.getPointY(t), perlin.getPointX(t), perlin.getPointY(t), perlin.getPointX(t), perlin.getPointY(t));
+    }
+    perlin.endShape()
 
-    t += 0.010;
+    perlin.filter(perlin.BLUR, 7);
+  
+    t += 0.017;
 
     // clear the background every 500 frames using mod (%) operator
-    if (perlin.frameCount % 500 == 0) {
+    if (perlin.frameCount % 200 == 0) {
     perlin.background('#87ceeb');
+    
     }
-  }
-};
+    }
+  };
 
 //new p5(perlin_sketch, 'perlin-noise');
