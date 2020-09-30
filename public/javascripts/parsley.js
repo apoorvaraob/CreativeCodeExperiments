@@ -17,7 +17,7 @@ p.preload = function(){
 p.setup = function(){
   //p.createCanvas(p.displayWidth, p.displayHeight);
   p.createCanvas(800,500)
-  p.frameRate(4);
+  p.frameRate(10);
 }
 
 p.draw = function(){
@@ -58,6 +58,7 @@ p.branch = function(len) {
     p.rotate(-theta - p.random(0.3)); // add noise
     p.branch(len * 1.01); // change length
     p.pop();
+    
   }
 }
 };
